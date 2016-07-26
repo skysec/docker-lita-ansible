@@ -1,0 +1,17 @@
+version: '2'
+services: 
+  redis:
+    image: redis
+  bot:
+    image: skysec/lita-ansible
+    #volumes:
+    #   - /path/to/local/scripts:/home/bot/scripts
+    depends_on:
+      - redis
+    environment:
+      - LITA_REDIS_HOST=redis
+      - LITA_REDIS_PORT=6379
+      - LITA_BOT_NAME
+      - LITA_ADMIN
+      - LITA_SLACK_TOKEN
+      - LITA_CMD_SCRIPTS_DIR
